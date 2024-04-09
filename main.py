@@ -18,6 +18,8 @@
 # --> Import module:
 
 import numpy as np
+import stocks #allows use of the .py file and its obj contents
+
 
 
 # --> Methods:
@@ -39,5 +41,8 @@ def percent_of_mean(file):
 #   - Find mean of all values
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
-inp_file0 = open("stocks.py")
+try:
+    with open("stocks.py", "x")
+except FileExistsError:
+    with open()
 
