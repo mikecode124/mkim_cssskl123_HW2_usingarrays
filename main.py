@@ -6,12 +6,12 @@
 #
 #
 # In this assignment, we are tasked with reading from a .py file and
-# utilizing/manipulating the data within 4 separate lists to perform certain
-# operations while use of f/w loop syntax is or is not restricted. Ultimately,
-# the data values read in will be displayed and compared via visualizations.
+# utilizing/manipulating the data within 3 separate lists to perform certain
+# operations while use of f/w loop syntax is mostly restricted. Ultimately,
+# the data will be displayed and compared via visualizations.
 #
-# **Comments that specify each numbered task are in, "Main:", which begins
-# after the import and methods sections below**
+# **Comments that specify each numbered task are in, "--> Main:", which begins
+# after the Import and Methods sections below**
 # =============================================================================
 
 # --> Import module:
@@ -64,7 +64,7 @@ def num_days_big_percent_chg(one_d, percent):
 # - Write 'percent_of_mean()'
 #   - Input is a 1-D array of numeric values
 #       - values represent the stock index for each day as a % of the
-#           mean value over the period covered by the list
+#         mean value over the period covered by the list
 #   - Find mean of all values
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
@@ -102,11 +102,11 @@ plt.legend(loc="upper left")
 #       - a percentage value
 #   - returns a number of days
 #       - represents # of days the stock value change from the previous day
-#       exceeded the input %
+#         exceeded the input %
 #       - both + and - change amount count as being larger than the %
 # -----------------------------------------------------------------------------
 
-# num_days_big_percent_chg(): completed in --> Methods: section (line 25)
+# num_days_big_percent_chg(): completed in --> Methods: section (line 50)
 print('num_days_big_percent_chg():')
 print(num_days_big_percent_chg(stocks.nasdaq, 4))
 
