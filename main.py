@@ -40,7 +40,7 @@ def percent_of_mean(one_d):
 
     # replace all entries (> 0) with their values expressed in % of the mean
     mean_array = np.where(as_array > 0, (as_array / mean) * 100, error_fill)
-    print(mean_array)
+    #print(mean_array)
 
     # mean_array = np.around(mean_array, decimals=2) #reassign new array to mean_array
     # print(mean_array)
@@ -107,7 +107,7 @@ plt.legend(loc="upper left")
 # -----------------------------------------------------------------------------
 
 # num_days_big_percent_chg(): completed in --> Methods: section (line 25)
-print('num_days_big_percent_chg()')
+print('num_days_big_percent_chg():')
 print(num_days_big_percent_chg(stocks.nasdaq, 4))
 
 
