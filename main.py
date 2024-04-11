@@ -56,6 +56,25 @@ def num_days_big_percent_chg(one_d, percent):
 
     return ret_val
 
+
+def moving_average(one_d):
+    as_array = np.asarray(one_d)
+    #print(as_array)
+    counter = 2
+
+    ret_arr = np.zeros(as_array.shape[0] - 2)
+    print(len(ret_arr))
+
+    while counter < len(as_array):
+        #print("sum of as_array[0:3]" + str(sum(as_array[0:3])))
+        temp_sum = sum(as_array[counter - 2:counter + 1])
+        moving_3day = temp_sum / 3
+        print(moving_3day)
+
+        counter += 1
+        #print(counter)
+
+
 # --> Main:
 
 # -----------------------------------------------------------------------------
@@ -108,8 +127,8 @@ plt.legend(loc="upper left")
 # -----------------------------------------------------------------------------
 
 # num_days_big_percent_chg(): completed in --> Methods: section (line 50)
-print('num_days_big_percent_chg():')
-print(num_days_big_percent_chg(stocks.nasdaq, 4))
+print("num_days_big_percent_chg(nasdaq, 4%): " +
+      str(num_days_big_percent_chg(stocks.nasdaq, 4)))  # should print: 1
 
 # -----------------------------------------------------------------------------
 # Task #4:
@@ -157,5 +176,18 @@ plt.legend(loc="upper right")
 #plt.show()
 
 
+
+# -----------------------------------------------------------------------------
+# Task #5:
+# - Restricted to one (1) loop
+# - Write 'moving_average()'
+#   - Input is a 1-D array of numeric values
+#   - Returns simple 3 day moving average
+#       - Average each day with the 2 before it
+#       - Return array will thus be 2 index less/shorter than input
+# -----------------------------------------------------------------------------
+
+# moving_average(): completed in --> Methods: section (line 50)
+moving_average(stocks.nasdaq)
 
 # ---End of File----
