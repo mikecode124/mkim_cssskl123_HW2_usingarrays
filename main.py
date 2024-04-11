@@ -85,7 +85,7 @@ djia_pom = percent_of_mean(stocks.djia)
 # -----------------------------------------------------------------------------
 
 plt.figure(1)
-plt.plot(np.arange(len(nasdaq_pom)), nasdaq_pom, label="Nasdaq")
+plt.plot(np.arange(len(nasdaq_pom)), nasdaq_pom, label="NASDAQ")
 plt.plot(np.arange(len(sp500_pom)), sp500_pom, label="S&P500")
 plt.plot(np.arange(len(djia_pom)), djia_pom, label="DJIA")
 plt.ylabel("Percent of Mean")
@@ -96,6 +96,7 @@ plt.legend(loc="upper left")
 
 # -----------------------------------------------------------------------------
 # Task #3:
+# - Loops restricted / List comprehension structures restricted
 # - Write 'num_days_big_percent_chg()'
 #   - two parameters:
 #       - 1-D array values of a stock index
@@ -109,6 +110,51 @@ plt.legend(loc="upper left")
 # num_days_big_percent_chg(): completed in --> Methods: section (line 50)
 print('num_days_big_percent_chg():')
 print(num_days_big_percent_chg(stocks.nasdaq, 4))
+
+# -----------------------------------------------------------------------------
+# Task #4:
+# - Calculate the % change from day to day for each stock index
+#   - Use 'num_days_big_percent_chg()'
+#   - Track the following:
+#       - # of days change exceeds 0.2%
+#       - # of days change exceeds 0.4%
+#       - ... exceeds 0.6%
+#       - ... exceeds 0.8%
+#       - ... exceeds 1.0%
+#   - Plot each stock's representation
+#       - # of days vs % threshold values
+#       - label axis and make legend
+# -----------------------------------------------------------------------------
+
+nasdaq_change = [num_days_big_percent_chg(stocks.nasdaq, 0.2),
+                 num_days_big_percent_chg(stocks.nasdaq, 0.4),
+                 num_days_big_percent_chg(stocks.nasdaq, 0.6),
+                 num_days_big_percent_chg(stocks.nasdaq, 0.8),
+                 num_days_big_percent_chg(stocks.nasdaq, 1)]
+
+sp500_change = [num_days_big_percent_chg(stocks.sp500, 0.2),
+                 num_days_big_percent_chg(stocks.sp500, 0.4),
+                 num_days_big_percent_chg(stocks.sp500, 0.6),
+                 num_days_big_percent_chg(stocks.sp500, 0.8),
+                 num_days_big_percent_chg(stocks.sp500, 1)]
+
+djia_change = [num_days_big_percent_chg(stocks.djia, 0.2),
+                 num_days_big_percent_chg(stocks.djia, 0.4),
+                 num_days_big_percent_chg(stocks.djia, 0.6),
+                 num_days_big_percent_chg(stocks.djia, 0.8),
+                 num_days_big_percent_chg(stocks.djia, 1)]
+
+change_x = [0.2, 0.4, 0.6, 0.8, 1]
+
+plt.figure(3)
+plt.plot(change_x, nasdaq_change, label="NASDAQ")
+plt.plot(change_x, sp500_change, label="S&P500")
+plt.plot(change_x, djia_change, label="DJIA")
+plt.ylabel("Number of Days")
+plt.xlabel("Percentage Change Threshold Magnitude")
+plt.title("Number of Days the Daily Percentage Change Exceeds a Threshold Magnitude")
+plt.legend(loc="upper right")
+#plt.show()
 
 
 
