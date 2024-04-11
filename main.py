@@ -95,7 +95,6 @@ def moving_average(one_d):
 
     return ret_arr
 
-
 # --> Main:
 
 # -----------------------------------------------------------------------------
@@ -112,6 +111,8 @@ def moving_average(one_d):
 # percent_of_mean(): completed in --> Methods: section (line 25)
 print("\npercent_of_mean(nasdaq[3]): " +
       str(percent_of_mean(stocks.nasdaq)[3]) + "\n")  # should print 98.67...
+
+# store method returns into separate variables
 nasdaq_pom = percent_of_mean(stocks.nasdaq)
 sp500_pom = percent_of_mean(stocks.sp500)
 djia_pom = percent_of_mean(stocks.djia)
@@ -128,6 +129,7 @@ djia_pom = percent_of_mean(stocks.djia)
 
 # plot all 3 stock index representions on 1 graph, figure(1)
 plt.figure(1)
+# used stored method return from task 1
 plt.plot(np.arange(len(nasdaq_pom)), nasdaq_pom, label="NASDAQ")
 plt.plot(np.arange(len(sp500_pom)), sp500_pom, label="S&P500")
 plt.plot(np.arange(len(djia_pom)), djia_pom, label="DJIA")
