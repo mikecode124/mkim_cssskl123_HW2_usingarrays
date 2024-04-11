@@ -110,6 +110,8 @@ def moving_average(one_d):
 # -----------------------------------------------------------------------------
 
 # percent_of_mean(): completed in --> Methods: section (line 25)
+print("\npercent_of_mean(nasdaq[3]): " +
+      str(percent_of_mean(stocks.nasdaq)[3]) + "\n")  # should print 98.67...
 nasdaq_pom = percent_of_mean(stocks.nasdaq)
 sp500_pom = percent_of_mean(stocks.sp500)
 djia_pom = percent_of_mean(stocks.djia)
@@ -124,6 +126,7 @@ djia_pom = percent_of_mean(stocks.djia)
 # - Title is: "Indices as Percent of Their Means"
 # -----------------------------------------------------------------------------
 
+# plot all 3 stock index representions on 1 graph, figure(1)
 plt.figure(1)
 plt.plot(np.arange(len(nasdaq_pom)), nasdaq_pom, label="NASDAQ")
 plt.plot(np.arange(len(sp500_pom)), sp500_pom, label="S&P500")
@@ -210,7 +213,8 @@ plt.legend(loc="upper right")
 # -----------------------------------------------------------------------------
 
 # moving_average(): completed in --> Methods: section (line 71)
-# print(moving_average(stocks.nasdaq))
+print("\nmoving_average(nasdaq[0]]): "
+      + str(moving_average(stocks.nasdaq)[0]))  # should print 4955.37...
 
 # -----------------------------------------------------------------------------
 # Task #6:
@@ -224,6 +228,7 @@ plt.legend(loc="upper right")
 #       - Legend: MA, Non-MA
 # -----------------------------------------------------------------------------
 
+# plot 3 seperate graphs, figure(3-5)
 plt.figure(3)
 plt.plot(np.arange(len(moving_average(stocks.nasdaq))), moving_average(stocks.nasdaq), label="MA")
 plt.plot(np.arange(len(stocks.nasdaq) - 2), stocks.nasdaq[2:], label="Non-MA")
@@ -248,6 +253,7 @@ plt.xlabel("Trading Days Since Jun 1, 2016")
 plt.title("Three Day Moving Average of DJIA")
 plt.legend(loc="upper left")
 
+# show all graphs from all relevant tasks simultaneously
 plt.show()
 
 # ---End of File----
