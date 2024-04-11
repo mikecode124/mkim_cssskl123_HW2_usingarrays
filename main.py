@@ -63,16 +63,19 @@ def moving_average(one_d):
     counter = 2
 
     ret_arr = np.zeros(as_array.shape[0] - 2)
-    print(len(ret_arr))
+    #print(len(ret_arr))
 
     while counter < len(as_array):
         #print("sum of as_array[0:3]" + str(sum(as_array[0:3])))
         temp_sum = sum(as_array[counter - 2:counter + 1])
         moving_3day = temp_sum / 3
-        print(moving_3day)
-
+        #print(moving_3day)
+        ret_arr[counter - 2] = moving_3day
         counter += 1
         #print(counter)
+
+    #print(ret_arr)
+    return ret_arr
 
 
 # --> Main:
