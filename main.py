@@ -145,7 +145,7 @@ print("num_days_big_percent_chg(nasdaq, 4%): " +
 #       - ... exceeds 1.0%
 #   - Plot each stock's representation
 #       - # of days vs % threshold values
-#       - label axis and make legend
+#       - label axis, title, and make legend
 # -----------------------------------------------------------------------------
 
 nasdaq_change = [num_days_big_percent_chg(stocks.nasdaq, 0.2),
@@ -178,8 +178,6 @@ plt.title("Number of Days the Daily Percentage Change Exceeds a Threshold Magnit
 plt.legend(loc="upper right")
 #plt.show()
 
-
-
 # -----------------------------------------------------------------------------
 # Task #5:
 # - Restricted to one (1) loop
@@ -191,6 +189,20 @@ plt.legend(loc="upper right")
 # -----------------------------------------------------------------------------
 
 # moving_average(): completed in --> Methods: section (line 50)
-moving_average(stocks.nasdaq)
+print(moving_average(stocks.nasdaq))
+
+# -----------------------------------------------------------------------------
+# Task #6:
+#   - Plot each stock's representation separately
+#       - Two plots per graph
+#           - 3 day moving average
+#           -
+#       - Y-axis: "Moving Average of Index"
+#       - X-axis: "Trading Days Since Jun 1, 2016"
+#   - Input is a 1-D array of numeric values
+#   - Returns simple 3 day moving average
+#       - Average each day with the 2 before it
+#       - Return array will thus be 2 index less/shorter than input
+# -----------------------------------------------------------------------------
 
 # ---End of File----
