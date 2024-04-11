@@ -193,16 +193,40 @@ print(moving_average(stocks.nasdaq))
 
 # -----------------------------------------------------------------------------
 # Task #6:
-#   - Plot each stock's representation separately
+#   - Plot each stock's representation separately (3 separate figures)
 #       - Two plots per graph
-#           - 3 day moving average
-#           -
+#           - 3 day moving average (MA)
+#           - Market value on the same day (Non-MA) (no average or anything)
 #       - Y-axis: "Moving Average of Index"
 #       - X-axis: "Trading Days Since Jun 1, 2016"
-#   - Input is a 1-D array of numeric values
-#   - Returns simple 3 day moving average
-#       - Average each day with the 2 before it
-#       - Return array will thus be 2 index less/shorter than input
+#       - Title: "Three Day Moving Average of {stock index name}"
+#       - Legend: MA, Non-MA
 # -----------------------------------------------------------------------------
+print(len(moving_average(stocks.nasdaq)))
+plt.figure(4)
+plt.plot(np.arange(len(moving_average(stocks.nasdaq))), moving_average(stocks.nasdaq), label="MA")
+plt.plot(np.arange(len(stocks.nasdaq) - 2), stocks.nasdaq[2:], label="Non-MA")
+plt.ylabel("Moving Average of Index")
+plt.xlabel("Trading Days Since Jun 1, 2016")
+plt.title("Three Day Moving Average of Nasdaq")
+plt.legend(loc="upper left")
+
+plt.figure(5)
+plt.plot(np.arange(len(moving_average(stocks.sp500))), moving_average(stocks.sp500), label="MA")
+plt.plot(np.arange(len(stocks.sp500) - 2), stocks.sp500[2:], label="Non-MA")
+plt.ylabel("Moving Average of Index")
+plt.xlabel("Trading Days Since Jun 1, 2016")
+plt.title("Three Day Moving Average of S&P500")
+plt.legend(loc="upper left")
+
+plt.figure(6)
+plt.plot(np.arange(len(moving_average(stocks.djia))), moving_average(stocks.djia), label="MA")
+plt.plot(np.arange(len(stocks.djia) - 2), stocks.djia[2:], label="Non-MA")
+plt.ylabel("Moving Average of Index")
+plt.xlabel("Trading Days Since Jun 1, 2016")
+plt.title("Three Day Moving Average of DJIA")
+plt.legend(loc="upper left")
+
+plt.show()
 
 # ---End of File----
