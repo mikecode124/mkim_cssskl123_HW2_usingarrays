@@ -24,15 +24,16 @@ import matplotlib.pyplot as plt
 
 def percent_of_mean(one_d):
     '''
-    As outlined in task #1, takes a 1-d list or array as an argument,
+    From task #1, takes a 1-d list or array as an argument,
     transforms each of its values to a % of the mean of all values in
     the argument object.
     :param one_d: A one dimensional array or list
-    :return: An array whose values correspond to the argument obj expressed in % of the mean
+    :return: An array whose values correspond to the argument obj expressed in %
+    of the mean
     '''
     as_array = np.asarray(one_d)  # cast the parameter arg as a numpy array
     error_fill = np.zeros(np.shape(one_d)) - 1  # sentinel value: -1
-    mean_array = np.zeros(np.shape(one_d))  # create arrays that match the shape of input arg
+    mean_array = np.zeros(np.shape(one_d))  # match the shape of input arg
 
     total = sum(one_d)
     count = len(one_d)
@@ -40,41 +41,58 @@ def percent_of_mean(one_d):
 
     # replace all entries (> 0) with their values expressed in % of the mean
     mean_array = np.where(as_array > 0, (as_array / mean) * 100, error_fill)
-    #print(mean_array)
 
-    # mean_array = np.around(mean_array, decimals=2) #reassign new array to mean_array
-    # print(mean_array)
     return mean_array
 
 
 def num_days_big_percent_chg(one_d, percent):
-    as_array = np.asarray(one_d)
+    '''
+    From task #3, takes a 1-d list or array and a % value
+    as an arguments. Finds the change from each day to day represented
+    in %. Returns the total # of days that the change % exceeded the
+    input percent value.
+    :param one_d: A one dimensional array or list
+    :param percent: Comparison % value
+    :return: Number of days change exceeded % comparison value
+    '''
+    as_array = np.asarray(one_d)  # convert input to array
+    # find the absolute difference between each day
     change_arr = np.abs(as_array[:-1] - as_array[1:])
+    # represent difference value as %
     perc_arr = (change_arr / as_array[:-1]) * 100
+    # create copy array filled with boolean T if > than input %
     bool_arr = perc_arr > percent
+    # store sum of days that change % exceeds input %
     ret_val = sum(bool_arr)
 
     return ret_val
 
 
 def moving_average(one_d):
+    '''
+    From task #5, takes a 1-d list or array as an argument. Calculates
+    the average of each day with the 2 before it for a moving 3 day average.
+    Returns an array with the 3 day moving averages. 2 index shorter than input.
+    :param one_d: A one dimensional array or list
+    :return: An array whose values represents the average of each day with the
+    2 before it
+    '''
     as_array = np.asarray(one_d)
-    #print(as_array)
-    counter = 2
-
+    counter = 2  # counter starts @ 2 to allow 2 prev index (days) for 3 day avg
+    # return array also 2 index less
     ret_arr = np.zeros(as_array.shape[0] - 2)
-    #print(len(ret_arr))
 
+    # increment counter, break when counter == to length of input one_d
     while counter < len(as_array):
-        #print("sum of as_array[0:3]" + str(sum(as_array[0:3])))
+        # store each 3 day interval
         temp_sum = sum(as_array[counter - 2:counter + 1])
+        # store average of each 3 day interval
         moving_3day = temp_sum / 3
-        #print(moving_3day)
+        # assign average to corresponding return array position
         ret_arr[counter - 2] = moving_3day
+        # increment counter with each loop
         counter += 1
-        #print(counter)
 
-    #print(ret_arr)
     return ret_arr
 
 
@@ -114,7 +132,6 @@ plt.ylabel("Percent of Mean")
 plt.xlabel("Trading Days Since Jun 1, 2016")
 plt.title("Indices as Percent of Their Means")
 plt.legend(loc="upper left")
-#plt.show()
 
 # -----------------------------------------------------------------------------
 # Task #3:
@@ -129,7 +146,7 @@ plt.legend(loc="upper left")
 #       - both + and - change amount count as being larger than the %
 # -----------------------------------------------------------------------------
 
-# num_days_big_percent_chg(): completed in --> Methods: section (line 50)
+# num_days_big_percent_chg(): completed in --> Methods: section (line 48)
 print("num_days_big_percent_chg(nasdaq, 4%): " +
       str(num_days_big_percent_chg(stocks.nasdaq, 4)))  # should print: 1
 
@@ -148,27 +165,32 @@ print("num_days_big_percent_chg(nasdaq, 4%): " +
 #       - label axis, title, and make legend
 # -----------------------------------------------------------------------------
 
+# make lists for total # of days which correspond to thresholds
 nasdaq_change = [num_days_big_percent_chg(stocks.nasdaq, 0.2),
                  num_days_big_percent_chg(stocks.nasdaq, 0.4),
                  num_days_big_percent_chg(stocks.nasdaq, 0.6),
                  num_days_big_percent_chg(stocks.nasdaq, 0.8),
                  num_days_big_percent_chg(stocks.nasdaq, 1)]
 
+# "" line 168
 sp500_change = [num_days_big_percent_chg(stocks.sp500, 0.2),
                  num_days_big_percent_chg(stocks.sp500, 0.4),
                  num_days_big_percent_chg(stocks.sp500, 0.6),
                  num_days_big_percent_chg(stocks.sp500, 0.8),
                  num_days_big_percent_chg(stocks.sp500, 1)]
 
+# "" line 168
 djia_change = [num_days_big_percent_chg(stocks.djia, 0.2),
                  num_days_big_percent_chg(stocks.djia, 0.4),
                  num_days_big_percent_chg(stocks.djia, 0.6),
                  num_days_big_percent_chg(stocks.djia, 0.8),
                  num_days_big_percent_chg(stocks.djia, 1)]
 
+# create threshold values, correspond index total to above 3 lists
 change_x = [0.2, 0.4, 0.6, 0.8, 1]
 
-plt.figure(3)
+# plot all on one graph, figure(2)
+plt.figure(2)
 plt.plot(change_x, nasdaq_change, label="NASDAQ")
 plt.plot(change_x, sp500_change, label="S&P500")
 plt.plot(change_x, djia_change, label="DJIA")
@@ -176,7 +198,6 @@ plt.ylabel("Number of Days")
 plt.xlabel("Percentage Change Threshold Magnitude")
 plt.title("Number of Days the Daily Percentage Change Exceeds a Threshold Magnitude")
 plt.legend(loc="upper right")
-#plt.show()
 
 # -----------------------------------------------------------------------------
 # Task #5:
@@ -188,8 +209,8 @@ plt.legend(loc="upper right")
 #       - Return array will thus be 2 index less/shorter than input
 # -----------------------------------------------------------------------------
 
-# moving_average(): completed in --> Methods: section (line 50)
-print(moving_average(stocks.nasdaq))
+# moving_average(): completed in --> Methods: section (line 71)
+# print(moving_average(stocks.nasdaq))
 
 # -----------------------------------------------------------------------------
 # Task #6:
@@ -202,8 +223,8 @@ print(moving_average(stocks.nasdaq))
 #       - Title: "Three Day Moving Average of {stock index name}"
 #       - Legend: MA, Non-MA
 # -----------------------------------------------------------------------------
-print(len(moving_average(stocks.nasdaq)))
-plt.figure(4)
+
+plt.figure(3)
 plt.plot(np.arange(len(moving_average(stocks.nasdaq))), moving_average(stocks.nasdaq), label="MA")
 plt.plot(np.arange(len(stocks.nasdaq) - 2), stocks.nasdaq[2:], label="Non-MA")
 plt.ylabel("Moving Average of Index")
@@ -211,7 +232,7 @@ plt.xlabel("Trading Days Since Jun 1, 2016")
 plt.title("Three Day Moving Average of Nasdaq")
 plt.legend(loc="upper left")
 
-plt.figure(5)
+plt.figure(4)
 plt.plot(np.arange(len(moving_average(stocks.sp500))), moving_average(stocks.sp500), label="MA")
 plt.plot(np.arange(len(stocks.sp500) - 2), stocks.sp500[2:], label="Non-MA")
 plt.ylabel("Moving Average of Index")
@@ -219,7 +240,7 @@ plt.xlabel("Trading Days Since Jun 1, 2016")
 plt.title("Three Day Moving Average of S&P500")
 plt.legend(loc="upper left")
 
-plt.figure(6)
+plt.figure(5)
 plt.plot(np.arange(len(moving_average(stocks.djia))), moving_average(stocks.djia), label="MA")
 plt.plot(np.arange(len(stocks.djia) - 2), stocks.djia[2:], label="Non-MA")
 plt.ylabel("Moving Average of Index")
